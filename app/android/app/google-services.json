@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "500108947741",
+    "project_id": "tem-vaga-b56e8",
+    "storage_bucket": "tem-vaga-b56e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:500108947741:android:f606b6d0e584ade1e2b1f4",
+        "android_client_info": {
+          "package_name": "com.example.tem_vaga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "500108947741-8k5pkrihji7uue1cpii0ktimrc4ff41v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2X-tl75TrWjCySBZiv1ltUNymzmO0xKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "500108947741-8k5pkrihji7uue1cpii0ktimrc4ff41v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
