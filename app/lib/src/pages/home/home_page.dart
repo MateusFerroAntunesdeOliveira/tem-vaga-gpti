@@ -1,7 +1,10 @@
-import 'dart:async';
-
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+
+import 'home_page_cont.dart';
+import '../config/config_page.dart';
+import '../mapa/map_static_page.dart';
+import '../perfil/user_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,73 +14,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  int _times = 0;
-  late final DatabaseReference _counterRef;
-  late StreamSubscription<DatabaseEvent> _counterSubscription;
+  int currentIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    init();
-  }
-
-  init() async {
-    _counterRef = FirebaseDatabase.instance.ref('counter');
-    try {
-      final countSnapshot = await _counterRef.get();
-      _times = countSnapshot.value as int;
-    } catch (err) {
-      debugPrint(err.toString());
-    }
-
-    _counterSubscription = _counterRef.onValue.listen((DatabaseEvent event) {
-      setState(() {
-        _times = (event.snapshot.value ?? 0) as int;
-      });
-    });
-  }
-
-  timeCounter() async {
-    await _counterRef.set(ServerValue.increment(1));
-  }
-
-  @override
-  void dispose() {
-    _counterSubscription.cancel();
-    super.dispose();
-  }
+  final screens = [
+    HomePageCont(),
+    MapPage(),
+    UserPage(),
+    ConfigPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF9F150D),
-        toolbarHeight: 98,
-        title: const Text(
-          "Home Screen",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.normal,
-            fontFamily: 'Montserrat',
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout_outlined),
-            color: Colors.white,
-            onPressed: () => Navigator.of(context).pushReplacementNamed('/LoginPage'),
-          ),
-          const SizedBox(width: 16),
-        ],
+      body: IndexedStack(
+        index: currentIndex,
+        // To maintain the state of the pages - keepalive
+        children: screens,
       ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(onPressed: timeCounter, icon: const Icon(Icons.add)),
-            Text(_times.toString(), style: const TextStyle(fontSize: 24))
-          ],
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color(0xFF9F150D),
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.white,
+        elevation: 25,
+        enableFeedback: true,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_filled, size: 32, color: Colors.red),
+            label: 'Home',
+            tooltip: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map, size: 32, color: Colors.red),
+            label: 'Mapa',
+            tooltip: 'Mapa',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person, size: 32, color: Colors.red),
+            label: 'Perfil',
+            tooltip: 'Perfil',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings, size: 32, color: Colors.red),
+            label: 'Configurações',
+            tooltip: 'Configurações',
+          ),
+        ],
+        currentIndex: currentIndex,
+        onTap: (index) => setState(() => currentIndex = index),
       ),
     );
   }

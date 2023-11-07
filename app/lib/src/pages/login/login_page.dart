@@ -10,9 +10,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF9F150D),
+      backgroundColor: Color.fromARGB(255, 182, 182, 182),
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                 child: Text(
                   "TEM VAGA?",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 53, 53, 53),
                       fontWeight: FontWeight.w700,
                       fontSize: 36,
                       fontFamily: 'Montserrat'),
@@ -57,98 +57,93 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
+
               const SizedBox(height: 48),
               //-> Apple
-              Expanded(
-                child: ElevatedButton(
-                  style: BasicButtonStyle(
-                    elevation: 0,
-                    backgroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
+              ElevatedButton(
+                style: BasicButtonStyle(
+                  elevation: 0,
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(FontAwesomeIcons.apple),
-                      SizedBox(width: 8),
-                      Text(
-                        "Continuar com Apple",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Montserrat',
-                        ),
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/HomePage');
-                  },
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(FontAwesomeIcons.apple),
+                    SizedBox(width: 8),
+                    Text(
+                      "Continuar com Apple",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('/HomePage');
+                },
               ),
               const SizedBox(height: 8),
               //-> Google
-              Expanded(
-                child: ElevatedButton(
-                  style: BasicButtonStyle(
-                    elevation: 0,
-                    backgroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
+              ElevatedButton(
+                style: BasicButtonStyle(
+                  elevation: 0,
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(FontAwesomeIcons.google, color: Color(0xFFdd4b39)),
-                      SizedBox(width: 8),
-                      Text(
-                        "Continuar com Google",
-                        style: TextStyle(
-                          color: Color(0xFF2E324A),
-                          fontSize: 16,
-                          fontFamily: 'Montserrat',
-                        ),
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/HomePage');
-                  },
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(FontAwesomeIcons.google, color: Color(0xFFdd4b39)),
+                    SizedBox(width: 8),
+                    Text(
+                      "Continuar com Google",
+                      style: TextStyle(
+                        color: Color(0xFF2E324A),
+                        fontSize: 16,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('/HomePage');
+                },
               ),
               const SizedBox(height: 8),
-              //-> Facebook
-              Expanded(
-                child: ElevatedButton(
-                  style: BasicButtonStyle(
-                    elevation: 0,
-                    backgroundColor: const Color(0xFF3769C9),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100),
-                    ),
+              // -> Facebook
+              ElevatedButton(
+                style: BasicButtonStyle(
+                  elevation: 0,
+                  backgroundColor: const Color(0xFF3769C9),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        "Continuar com Facebook",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontFamily: 'Montserrat',
-                        ),
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).pushReplacementNamed('/HomePage');
-                  },
                 ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(FontAwesomeIcons.facebookF, color: Colors.white),
+                    SizedBox(width: 8),
+                    Text(
+                      "Continuar com Facebook",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontFamily: 'Montserrat',
+                      ),
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  Navigator.of(context).pushReplacementNamed('/HomePage');
+                },
               ),
               const SizedBox(height: 8),
             ],
@@ -158,4 +153,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
