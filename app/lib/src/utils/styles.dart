@@ -44,7 +44,7 @@ class BasicButtonStyle extends ButtonStyle {
         );
 }
 
-class SixthSenseStyles {
+class TemVagaStyles {
   static InputDecoration inputDecoration(
     String hintText, {
     IconData? prefixIcon,
