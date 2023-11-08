@@ -1,5 +1,15 @@
 # Tem vaga - Gestão de Projeto de Tecnologia da Informação
 
+## Projeto está sendo desenvolvido para a disciplina de Gestão de Projeto de Tecnologia da Informação - Pontifícia Universidade Católica do Paraná (PUCPR)
+
+## Integrantes do grupo
+- [Mateus Ferro](@MateusFerroAntunesdeOliveira)
+- [Tasi Pasin](@tasipasin)
+- [João Gabriel](@ijoaog)
+- Gabriel Cezário
+
+### Projeto em desenvolvimento - 08/11/2023   
+
 ## Link uteis
 - [Documentação de ES](https://pucpredu-my.sharepoint.com/:f:/r/personal/mateus_antunes_pucpr_edu_br/Documents/PUC%208%C2%BA%20SEMESTRE/Engenharia%20de%20Software?csf=1&web=1&e=1b3z4a)
 
