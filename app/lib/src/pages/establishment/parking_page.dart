@@ -50,7 +50,7 @@ class _ParkingPageState extends State<ParkingPage> {
 
   Widget _buildSensor({required int index}) {
     return Positioned(
-      top: 49 * ((index + 1) / 2).ceilToDouble(),
+      top: 16 + 46 * ((index + 1) / 2).ceilToDouble(),
       right: index % 2 != 0 ? 32 : null,
       left: index % 2 == 0 ? 32 : null,
       child: Container(
