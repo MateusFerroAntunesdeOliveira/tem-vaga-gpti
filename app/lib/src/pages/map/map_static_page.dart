@@ -31,9 +31,7 @@ class _MapPageState extends State<MapPage> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => MapsGooglePage(),
-                ),
+                MaterialPageRoute(builder: (context) => MapsGooglePage()),
               );
             },
             child: Container(
@@ -63,9 +61,7 @@ class _MapPageState extends State<MapPage> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 40
-          ),
+          const SizedBox(height: 40),
           const Center(
             child: Text(
               "Tela do Mapa",
