@@ -21,8 +21,11 @@ dependencies:
   firebase_core: ^1.24.0
   firebase_database: ^9.1.7
   dio: ^4.0.6
-  flutter_polyline_points: ^1.0.0
   google_maps_flutter: ^2.2.1
+  http: ^0.13.5
+  flutter_polyline_points: ^1.0.0
+  geolocator: ^9.0.2
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
