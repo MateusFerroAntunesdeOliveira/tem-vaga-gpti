@@ -1,8 +1,12 @@
 import 'dart:async';
 
+import 'package:tem_vaga/src/dto/reservationDTO.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:firebase_database/firebase_database.dart';
+
+import '../mapa/maps_page.dart';
 
 class HomePageCont extends StatefulWidget {
   const HomePageCont({super.key});
@@ -12,9 +16,12 @@ class HomePageCont extends StatefulWidget {
 }
 
 class _HomePageContState extends State<HomePageCont> {
-  int _times = 0;
-  late final DatabaseReference _counterRef;
-  late StreamSubscription<DatabaseEvent> _counterSubscription;
+  late List<Object?> reservations;
+  late final DatabaseReference _ReservationValueRef;
+  late StreamSubscription<DatabaseEvent> _valueSubscription;
+
+  /** Lista de reservas do usuário. */
+  List<ReservationDTO> entries = List<ReservationDTO>.empty(growable: true);
 
   @override
   void initState() {
@@ -23,36 +30,44 @@ class _HomePageContState extends State<HomePageCont> {
   }
 
   init() async {
-    _counterRef = FirebaseDatabase.instance.ref('counter');
+    _ReservationValueRef = FirebaseDatabase.instance.ref('reservations/user1');
     try {
-      final countSnapshot = await _counterRef.get();
-      _times = countSnapshot.value as int;
+      final catchSnapshot = await _ReservationValueRef.get();
+      reservations = catchSnapshot.value as List<Object?>;
+      this.refreshReservationList();
     } catch (err) {
       debugPrint(err.toString());
     }
-
-    _counterSubscription = _counterRef.onValue.listen((DatabaseEvent event) {
+    _valueSubscription =
+        _ReservationValueRef.onValue.listen((DatabaseEvent event) {
       setState(() {
-        _times = (event.snapshot.value ?? 0) as int;
+        reservations = (event.snapshot.value ?? " ") as List<Object?>;
+        this.refreshReservationList();
       });
     });
   }
 
-  timeCounter() async {
-    await _counterRef.set(ServerValue.increment(1));
+  void refreshReservationList() {
+    entries.clear();
+    //loop over mapped object collection
+    reservations.forEach((reservation) {
+      if (null != reservation) {
+        entries.add(ReservationDTO.fromJson(reservation));
+      }
+    });
   }
 
   @override
   void dispose() {
-    _counterSubscription.cancel();
+    _valueSubscription.cancel();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF9F150D),
+        backgroundColor: Color.fromARGB(255, 97, 89, 89),
         toolbarHeight: 98,
         title: const Text(
           "Tela Inicial",
@@ -63,14 +78,47 @@ class _HomePageContState extends State<HomePageCont> {
           ),
         ),
       ),
-      body: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(onPressed: timeCounter, icon: const Icon(Icons.add)),
-            Text(_times.toString(), style: const TextStyle(fontSize: 24))
-          ],
-        ),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text("Reservas",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 65, 65, 65),
+                    )),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+                padding: const EdgeInsets.all(9),
+                itemCount: entries.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MapsGooglePage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 50,
+                        decoration: BoxDecoration(
+                            border: Border.all(color: Colors.black38),
+                            color: Colors.white70),
+                        child:
+                            Center(child: Text('${entries[index].getName()}')),
+                      ));
+                }),
+          ),
+        ],
       ),
     );
   }

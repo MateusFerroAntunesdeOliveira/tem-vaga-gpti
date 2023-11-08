@@ -11,10 +11,10 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AnimatedSplashScreen(
-          backgroundColor: const Color(0xFF9F150D),
+          backgroundColor: Color.fromARGB(255, 182, 182, 182),
           splashIconSize: 350,
           splash: Image.asset("assets/images/Logo_TemVaga-semFundo.png"),
-          duration: 2000,
+          duration: 1500,
           splashTransition: SplashTransition.fadeTransition,
           nextScreen: const LoginPage()),
     );

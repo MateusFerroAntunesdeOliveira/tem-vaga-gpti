@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../utils/utils.dart';
-
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -53,99 +49,35 @@ class LoginPage extends StatelessWidget {
                 child: SizedBox(
                   height: 320,
                   child: Center(
-                    child: Image.asset("assets/images/Logo_TemVaga-semFundo.png"),
+                    child:
+                        Image.asset("assets/images/Logo_TemVaga-semFundo.png"),
                   ),
                 ),
               ),
-
-              const SizedBox(height: 48),
-              //-> Apple
+              TextFormField(
+                  decoration: const InputDecoration(
+                icon: Icon(Icons.person),
+                labelText: 'Login',
+              )),
+              TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  icon: Icon(Icons.lock),
+                  labelText: 'Senha',
+                ),
+                validator: (String? value) {
+                  return (value != null && value.contains('@'))
+                      ? 'Do not use the @ char.'
+                      : null;
+                },
+              ),
+              const SizedBox(height: 10),
               ElevatedButton(
-                style: BasicButtonStyle(
-                  elevation: 0,
-                  backgroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(FontAwesomeIcons.apple),
-                    SizedBox(width: 8),
-                    Text(
-                      "Continuar com Apple",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ],
-                ),
                 onPressed: () {
                   Navigator.of(context).pushReplacementNamed('/HomePage');
                 },
+                child: const Text('Entrar'),
               ),
-              const SizedBox(height: 8),
-              //-> Google
-              ElevatedButton(
-                style: BasicButtonStyle(
-                  elevation: 0,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(FontAwesomeIcons.google, color: Color(0xFFdd4b39)),
-                    SizedBox(width: 8),
-                    Text(
-                      "Continuar com Google",
-                      style: TextStyle(
-                        color: Color(0xFF2E324A),
-                        fontSize: 16,
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ],
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushReplacementNamed('/HomePage');
-                },
-              ),
-              const SizedBox(height: 8),
-              // -> Facebook
-              ElevatedButton(
-                style: BasicButtonStyle(
-                  elevation: 0,
-                  backgroundColor: const Color(0xFF3769C9),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-                    SizedBox(width: 8),
-                    Text(
-                      "Continuar com Facebook",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 16,
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ],
-                ),
-                onPressed: () {
-                  Navigator.of(context).pushReplacementNamed('/HomePage');
-                },
-              ),
-              const SizedBox(height: 8),
             ],
           ),
         ),
