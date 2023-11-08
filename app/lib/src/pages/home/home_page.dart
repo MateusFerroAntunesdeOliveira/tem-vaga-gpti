@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'home_page_cont.dart';
 import '../config/config_page.dart';
-import '../mapa/map_static_page.dart';
-import '../perfil/user_page.dart';
+import '../map/map_static_page.dart';
+import '../profile/user_page.dart';
 
 
 class HomePage extends StatefulWidget {

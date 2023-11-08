@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'pages/splash/splash_page.dart';
-import 'pages/cadastro/cadastro_page.dart';
+import 'pages/signup/cadastro_page.dart';
 import 'pages/login/login_page.dart';
 import 'pages/home/home_page.dart';
 import 'pages/home/home_page_cont.dart';
-import 'pages/mapa/map_static_page.dart';
-import 'pages/mapa/maps_page.dart';
-import 'pages/perfil/user_page.dart';
+import 'pages/establishment/establishment_page.dart';
+import 'pages/establishment/parking_page.dart';
+import 'pages/map/map_static_page.dart';
+import 'pages/map/maps_page.dart';
+import 'pages/profile/user_page.dart';
 import 'pages/config/config_page.dart';
 
 class MyApp extends StatefulWidget {
@@ -32,6 +34,8 @@ class _MyAppState extends State<MyApp> {
         "/LoginPage": (_) => const LoginPage(),
         "/HomePage": (_) => const HomePage(),
         "/HomePageCont": (_) => const HomePageCont(),
+        "/HomePage/Establishement": (_) => const EstablishmentPage(),
+        "/HomePage/Establishement/Parking": (_) => const ParkingPage(),
         "/MapPage": (_) => const MapPage(),
         "/MapPage/MapsGooglePage": (_) => MapsGooglePage(),
         "/UserPage": (_) => const UserPage(),
