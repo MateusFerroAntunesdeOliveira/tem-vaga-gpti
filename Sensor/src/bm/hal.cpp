@@ -87,7 +87,7 @@ void FirebaseUpdate(){
   bool pspaceStatus = ParkingSpace();
   if (pspaceStatus != lastChange) {
     Serial.println("\nChanged...");
-    Firebase.RTDB.setBool(&fb, "counter", pspaceStatus);
+    Firebase.RTDB.setBool(&fb, "establishments/PUCPR/vaga1", pspaceStatus);
     lastChange = pspaceStatus;
   } else {
     Serial.println("\nNo change...");
