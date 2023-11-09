@@ -22,6 +22,8 @@ static uint16_t sendDataPrevMillis;
 
 static boolean signupOK = FALSE;
 
+static bool lastChange = false;
+
 void Delay(uint8_t time){
   delayMicroseconds(time*MICRO_2_SECOND);
 }
@@ -70,9 +72,9 @@ boolean ParkingSpace(){
     if(duration==0){
         Serial.println("\nWarning: no pulse from sensor");
         return (false);
-        } 
-    else
+    } else {
         return (distance <= PARKED_DISTANCE_CM);
+    }
 }
 
 boolean FirebaseUp()
@@ -82,7 +84,14 @@ boolean FirebaseUp()
 }
 
 void FirebaseUpdate(){
-  Firebase.RTDB.setBool(&fb, "counter", ParkingSpace());
+  bool pspaceStatus = ParkingSpace();
+  if (pspaceStatus != lastChange) {
+    Serial.println("\nChanged...");
+    Firebase.RTDB.setBool(&fb, "counter", pspaceStatus);
+    lastChange = pspaceStatus;
+  } else {
+    Serial.println("\nNo change...");
+  }
 }
 
 void InitHal(){
